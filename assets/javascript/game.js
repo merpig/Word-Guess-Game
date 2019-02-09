@@ -61,7 +61,7 @@ window.addEventListener('keyup', function (e) {
 
 function init(){
     document.getElementById("scoreDiv").innerHTML =
-    "<h1>Click play and press letters to guess the word!</h1>";
+    "<h1>Click play and enter letters to guess the word!</h1>";
 }
 
 function play(){
