@@ -1,0 +1,58 @@
+#buttonDiv{
+    width: min-content;
+    margin: auto;
+}
+
+#myBtn{
+    width: 14vw;
+    height: 7vw;
+    font-size: 5vw;
+}
+
+#lettersContainer{
+    width: max-content;
+    margin: auto;
+}
+
+#scoreDiv{
+    width: max-content;
+    margin: auto;
+}
+
+.lettersDiv{
+    width: 5vw;
+    margin: 5px;
+    height: 5vw;
+    padding: 10px;
+    background-color: lightblue;
+    border-radius: 5%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.letterDiv{
+    height: 90%;
+    
+    margin: auto;
+    text-align: center;
+}
+
+.letterSlice{
+    font-size: 5vw;
+}
+
+.underscore{
+    width: 90%;
+    height: 3px;
+    background-color: darkgray;
+    margin: auto;
+    margin-top: 10%;
+}
+
+#guessedDiv{
+    width: max-content;
+    margin: auto;
+    border: 2px solid lightblue;
+    border-radius: 5%;
+    padding: 2px;
+}
