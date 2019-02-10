@@ -85,6 +85,7 @@ function init(){
 // function attached to button to play game
 function play(){
     reset();
+    document.getElementById("keyboardtrigger").focus();
     document.getElementById("myBtn").innerHTML = "RESET";
     //x.disabled = true;
     getWord();
