@@ -1,3 +1,17 @@
+html { 
+    background: url("../images/bg.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  body {
+      background-color: white;
+      opacity: .75;
+      border-radius: 5px;
+  }
+
 #buttonDiv{
     width: min-content;
     margin: auto;
@@ -13,6 +27,7 @@
 }
 
 #scoreDiv{
+    
     width: max-content;
     margin: auto;
 }
@@ -30,7 +45,6 @@
 
 .letterDiv{
     height: 90%;
-    
     margin: auto;
     text-align: center;
 }
