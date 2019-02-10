@@ -67,7 +67,8 @@ window.addEventListener('keyup', function (e) {
 
 function init(){
     document.getElementById("scoreDiv").innerHTML =
-    "<h1>Click play and enter letters to guess the word!</h1>";
+    "<h1>Word Guess Game</h1>" +
+    "<font color='white' style='font-style: centered'>Sasha Peters</font>";
 }
 
 function play(){
@@ -89,7 +90,7 @@ function reset(){
     strLength=0;
     matches=0;
     document.getElementById("scoreDiv").innerHTML =
-        "<font color='green'>Type any letter to start guessing.</font>" +
+        "<font color='cyan'>Type any letter to start guessing.</font>" +
         "<br> Remaining Guesses: " +
         remainingGuesses +
         "<br> Wins: " +
@@ -105,12 +106,9 @@ function getWord(){
 }
 
 function drawLetterBoxes(){
-    
-    //console.log(strLength);
     for(var i = 0; i < strLength; i++){
         divContent += 
         "<div class='lettersDiv'><div class='letterDiv'><a class='letterSlice' id='slice" + i +"'>" +
-        //hiddenWord.slice(i,i+1) + 
         "</a></div><div class='underscore'></div>" + 
         "</div>";
         document.getElementById("lettersContainer").innerHTML = divContent;
@@ -142,11 +140,10 @@ function evaluateGuess(e){
             if(strLength===matches){
                 wins++;
                 document.getElementById("scoreDiv").innerHTML =
-                    "<font color='green'>You win!</font>"  +
-                    "<br>Wins: " +
+                    "<font color='cyan'>Press Reset or the enter/return key to play again.</font>" +
+                    "<br> <font color='green'>You win!</font>"  +
+                    "<br> Wins: " +
                     wins;
-                //var x = document.getElementById("myBtn");
-                //x.disabled = false;
                 break;
             }
         }
@@ -166,13 +163,11 @@ function evaluateGuess(e){
         else{
             gameStarted = false;
             document.getElementById("scoreDiv").innerHTML = 
-                "<font color='blue'>Press Play or spacebar/enter to play again.</font>" +
+                "<font color='cyan'>Press Reset or the enter/return key to play again.</font>" +
                 "<br> <font color='red'>Game Over</font>"  +
                 "<br> Wins: " +
                 wins;
             finishWord();
-            //var x = document.getElementById("myBtn");
-            //x.disabled = false;
         }
         
     }

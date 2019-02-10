@@ -7,18 +7,22 @@ html {
   }
 
   body {
+      padding: 20px;
       background-color: white;
-      opacity: .75;
+      opacity: .9;
       border-radius: 5px;
+      min-height: calc(100vh - 50px);
   }
 
 #buttonDiv{
     width: min-content;
     margin: auto;
+    
 }
 
 #myBtn{
     font-size: 4vw;
+    margin-bottom: 20px;
 }
 
 #lettersContainer{
@@ -27,9 +31,15 @@ html {
 }
 
 #scoreDiv{
-    
+    text-align: center;
+    color: powderblue;
+    background-color: black;
+    padding: 10px;
+    border-radius: 5px;
     width: max-content;
     margin: auto;
+    margin-top: 15%;
+    margin-bottom: 20px;
 }
 
 .lettersDiv{
@@ -64,6 +74,7 @@ html {
 #guessedDiv{
     width: max-content;
     margin: auto;
+    margin-bottom: 0;
     border: 2px solid lightblue;
     border-radius: 5%;
     padding: 2px;
