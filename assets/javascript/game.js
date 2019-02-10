@@ -1,11 +1,11 @@
 var wordArray = [
     "immense","pig","whistle","song","whisper",
     "mundane","excited","bulb","nest","special",
-    "theory","district","correct","plucky","vein",
-    "care","adjustment","righteous","drink","save",
-    "face","dust","difficult","bruise","train",
-    "late","earn","wise","preserve","noisy",
-    "beds","produce","dinosaurs","steep","beautiful",
+    "theory","disrupt","correct","plucky","vein",
+    "care","adjust","right","drink","save",
+    "face","dust","beast","bruise","train",
+    "late","earn","wise","hold","noisy",
+    "beds","produce","aspect","steep","beauty",
     "suit","potato","frog","sprite","music"
 ];
 
@@ -18,13 +18,15 @@ var gameStarted = false;
 var strLength = 0;
 var matches = 0;
 var wins = 0;
-
+var losses = 0;
 
 window.addEventListener('keyup', function (e) {
+    
+    if(e.keyCode === 32 || e.keyCode === 13) play();
+    else if(gameStarted  && strLength !== matches){
 
-    if(gameStarted  && strLength !== matches){
         guessedLetter = String.fromCharCode(e.keyCode);
-
+            
         if(validate(guessedLetter)){
 
             if(remainingGuesses && !arrayOfGuesses.includes(guessedLetter)){
@@ -35,13 +37,15 @@ window.addEventListener('keyup', function (e) {
 
             else if(remainingGuesses && arrayOfGuesses.includes(guessedLetter)){
                 document.getElementById("scoreDiv").innerHTML = 
-                    "<font color='orange'> You've alreay tried guessing the letter: " + 
+                    "<font color='orange'> Letter has already been picked: " + 
                     guessedLetter +
                     "</font>" +
                     "<br> Remaining Guesses: " +
                     remainingGuesses +
                     "<br> Wins: " +
-                    wins;
+                    wins +
+                    "<br> Losses: " +
+                    losses;
             }
         
             else{
@@ -51,13 +55,15 @@ window.addEventListener('keyup', function (e) {
         else {
             document.getElementById("scoreDiv").innerHTML =
 
-                "<font color='orange'>The character you entered is not a valid letter: " +
+                "<font color='orange'>Not a valid letter: " +
                 guessedLetter +
                 "</font>" +
                 "<br> Remaining Guesses: " +
                 remainingGuesses +
                 "<br> Wins: " +
-                wins;
+                wins +
+                "<br> Losses: " +
+                losses;
         }
 
     
@@ -94,7 +100,9 @@ function reset(){
         "<br> Remaining Guesses: " +
         remainingGuesses +
         "<br> Wins: " +
-        wins;
+        wins +
+        "<br> Losses: " +
+        losses;
     document.getElementById("guessedDiv").innerHTML = arrayOfGuesses;
 }
 
@@ -111,8 +119,7 @@ function drawLetterBoxes(){
         "<div class='lettersDiv'><div class='letterDiv'><a class='letterSlice' id='slice" + i +"'>" +
         "</a></div><div class='underscore'></div>" + 
         "</div>";
-        document.getElementById("lettersContainer").innerHTML = divContent;
-        
+        document.getElementById("lettersContainer").innerHTML = divContent;  
     }
 }
 
@@ -132,7 +139,9 @@ function evaluateGuess(e){
                 "<br> Remaining Guesses: " +
                 remainingGuesses +
                 "<br> Wins: " +
-                wins;
+                wins +
+                "<br> Losses: " +
+                losses;
             matches++;
             tempBool = true; 
             var temp = "slice" + i;
@@ -140,10 +149,12 @@ function evaluateGuess(e){
             if(strLength===matches){
                 wins++;
                 document.getElementById("scoreDiv").innerHTML =
-                    "<font color='cyan'>Press Reset or the enter/return key to play again.</font>" +
+                    "<font color='cyan'>Press RESET or enter/return to play again.</font>" +
                     "<br> <font color='green'>You win!</font>"  +
                     "<br> Wins: " +
-                    wins;
+                    wins +
+                    "<br> Losses: " +
+                    losses;
                 break;
             }
         }
@@ -158,15 +169,20 @@ function evaluateGuess(e){
                 "<br> Remaining Guesses: " +
                 remainingGuesses +
                 "<br> Wins: " +
-                wins;
+                wins +
+                "<br> Losses: " +
+                losses;
         }
         else{
             gameStarted = false;
+            losses++;
             document.getElementById("scoreDiv").innerHTML = 
-                "<font color='cyan'>Press Reset or the enter/return key to play again.</font>" +
+                "<font color='cyan'>Press Reset or enter/return to play again.</font>" +
                 "<br> <font color='red'>Game Over</font>"  +
                 "<br> Wins: " +
-                wins;
+                wins +
+                "<br> Losses: " +
+                losses;
             finishWord();
         }
         
@@ -186,4 +202,3 @@ function finishWord(){
 }
 
 init();
-//play();
