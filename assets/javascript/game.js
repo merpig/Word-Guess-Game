@@ -1,3 +1,4 @@
+// array of words for the game
 var wordArray = [
     "immense","pig","whistle","song","whisper",
     "mundane","excited","bulb","nest","special",
@@ -9,6 +10,7 @@ var wordArray = [
     "suit","potato","frog","sprite","music"
 ];
 
+// Variables holding necessary data for word guess
 var remainingGuesses = 10;
 var hiddenWord = "";
 var divContent = "";
@@ -20,21 +22,27 @@ var matches = 0;
 var wins = 0;
 var losses = 0;
 
+// Event listener for keyup keyboard events
 window.addEventListener('keyup', function (e) {
-    
+
+
+    // Return/Enter/Spacebar all activate the play() function
     if(e.keyCode === 32 || e.keyCode === 13) play();
     else if(gameStarted  && strLength !== matches){
 
         guessedLetter = String.fromCharCode(e.keyCode);
-            
+
+       // Check if guessed character is a letter     
         if(validate(guessedLetter)){
 
+            // Check if there are remaining guesses and that the guess hasn't already been guessed
             if(remainingGuesses && !arrayOfGuesses.includes(guessedLetter)){
                 arrayOfGuesses.push(guessedLetter);
                 evaluateGuess();
                 document.getElementById("guessedDiv").innerHTML = arrayOfGuesses;
             }
 
+            // Handles when there are remaining guess and the guess has already been guessed
             else if(remainingGuesses && arrayOfGuesses.includes(guessedLetter)){
                 document.getElementById("scoreDiv").innerHTML = 
                     "<font color='orange'> Letter has already been picked: " + 
@@ -46,12 +54,10 @@ window.addEventListener('keyup', function (e) {
                     wins +
                     "<br> Losses: " +
                     losses;
-            }
-        
-            else{
-            }              
+            }             
         }
 
+        // Handles when guessed character isn't a letter
         else {
             document.getElementById("scoreDiv").innerHTML =
 
@@ -65,18 +71,18 @@ window.addEventListener('keyup', function (e) {
                 "<br> Losses: " +
                 losses;
         }
-
-    
-
     }
 }, false);
 
+
+// init for intro to game section
 function init(){
     document.getElementById("scoreDiv").innerHTML =
     "<h1>Word Guess Game</h1>" +
     "<font color='white' style='font-style: centered'>Sasha Peters</font>";
 }
 
+// function attached to button to play game
 function play(){
     reset();
     document.getElementById("myBtn").innerHTML = "RESET";
@@ -86,6 +92,7 @@ function play(){
     gameStarted = true;
 }
 
+// all values except score are set back to default
 function reset(){
     remainingGuesses=10;
     hiddenWord="";
@@ -106,6 +113,7 @@ function reset(){
     document.getElementById("guessedDiv").innerHTML = arrayOfGuesses;
 }
 
+// grabs a random word from array
 function getWord(){
     var x = Math.floor(Math.random()*wordArray.length);
     hiddenWord = wordArray[x].toUpperCase();
@@ -113,6 +121,7 @@ function getWord(){
 
 }
 
+// draws boxes for the letters in the word that's being guessed
 function drawLetterBoxes(){
     for(var i = 0; i < strLength; i++){
         divContent += 
@@ -123,14 +132,18 @@ function drawLetterBoxes(){
     }
 }
 
+// function to check if char is string or not
 function validate(strValue) {
     var objRegExp  = /^[a-z\A-Z]+$/;
     return objRegExp.test(strValue);
 }
 
+
 function evaluateGuess(e){
     var tempBool = false;
     for(var i = 0; i < strLength; i++){
+
+        // Handles when the letter is a match
         if(guessedLetter === hiddenWord.slice(i,i+1)){
             document.getElementById("scoreDiv").innerHTML =
                 "<font color='green'>The letter you typed matches: " +
@@ -146,6 +159,8 @@ function evaluateGuess(e){
             tempBool = true; 
             var temp = "slice" + i;
             document.getElementById(temp).innerHTML = hiddenWord.slice(i,i+1);
+
+            // break the loop if the word is complete
             if(strLength===matches){
                 wins++;
                 document.getElementById("scoreDiv").innerHTML =
@@ -161,6 +176,8 @@ function evaluateGuess(e){
     }
     if(!tempBool){
         remainingGuesses--;
+
+        // Handles when there are remainging guesses and the guess didn't match
         if(remainingGuesses){
             document.getElementById("scoreDiv").innerHTML =
                 "<font color='orange'>The letter you typed does not match: " +
@@ -173,6 +190,8 @@ function evaluateGuess(e){
                 "<br> Losses: " +
                 losses;
         }
+
+        // Handles when there are no remainging guesses and the guess didn't match
         else{
             gameStarted = false;
             losses++;
@@ -189,9 +208,7 @@ function evaluateGuess(e){
     }
 }
 
-!arrayOfGuesses.includes(guessedLetter)
-
-
+// Draw in any unguessed letters
 function finishWord(){
     for(var i = 0; i < strLength; i++){
         if(!arrayOfGuesses.includes(hiddenWord.slice(i,i+1))){
