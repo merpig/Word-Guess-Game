@@ -139,7 +139,7 @@ function validate(strValue) {
     return objRegExp.test(strValue);
 }
 
-
+// function to check if a guessed letter is contained within the hidden word
 function evaluateGuess(e){
     var tempBool = false;
     for(var i = 0; i < strLength; i++){
